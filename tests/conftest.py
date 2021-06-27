@@ -2,8 +2,7 @@ import pytest
 from delivery.app import create_app
 
 
-
-@pytest.fixture(scope='module')
+@pytest.fixture(scope="module")
 def app():
     """app [Instance of Flask app]
 

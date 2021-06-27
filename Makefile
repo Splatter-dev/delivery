@@ -1,9 +1,34 @@
-
+clean:
+	@find ./ -name '*.pyc' -exec rm -f {} \;
+	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
+	@find ./ -name '*~' -exec rm -f {} \;
+	rm -r delivery.egg-info
+	rm -rf .cache
+	rm -rf build
+	rm -rf dist
+	rm -rf *.egg-info
+	rm -rf htmlcov
+	rm -rf .tox/
+	rm -rf docs/_build
+	pip install -e .[dev] --upgrade --no-cache
 
 install:
 	pip install -e .['dev'] 
 
+
 uninstall:
 	pip uninstall delivery
+	@find ./ -name '*.pyc' -exec rm -f {} \;
+	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
+	@find ./ -name '*~' -exec rm -f {} \;
 	rm -r delivery.egg-info
-# ['dev'] instala os requirements-dev.txt também. extras_require do setup.py
+	rm -rf .cache
+	rm -rf build
+	rm -rf dist
+	rm -rf *.egg-info
+	rm -rf htmlcov
+	rm -rf .tox/
+	rm -rf docs/_build
+
+test:
+	pytest tests/ -v --cov=delivery
